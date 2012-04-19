@@ -15,12 +15,12 @@ default[:monit][:mail_format][:subject] = "monit alert --  $EVENT $SERVICE"
 default[:monit][:mail_format][:from]    = "monit@$HOST"
 default[:monit][:mail_format][:message] = <<-EOS
 $EVENT Service $SERVICE
-     Date:        $DATE
-     Action:      $ACTION
-     Host:        $HOST
-     Description: $DESCRIPTION
+        Date:        $DATE
+        Action:      $ACTION
+        Host:        $HOST
+        Description: $DESCRIPTION
 
-Your faithful employee,
-Monit
+    Your faithful employee,
+    Monit
 EOS
 

@@ -1,5 +1,5 @@
 set daemon <%= node["monit"]["poll_period"] %>
-  with start delay <%= node["monit"]["poll_start_delay"] %>
+    with start delay <%= node["monit"]["poll_start_delay"] %>
 
 set logfile syslog facility log_daemon
 
@@ -10,15 +10,15 @@ set eventqueue
     slots <%= node["monit"]["slots"] %>      # optionaly limit the queue size
 
 set mail-format { 
-  from: <%= node["monit"]["mail_format"]["from"] %>
-  subject: <%= node["monit"]["mail_format"]["subject"] %>
-  message: <%= node["monit"]["mail_format"]["message"] %>
+    from: <%= node["monit"]["mail_format"]["from"] %>
+    subject: <%= node["monit"]["mail_format"]["subject"] %>
+    message: <%= node["monit"]["mail_format"]["message"] %>
 }
 
 set alert <%= node["monit"]["notify_email"] %> NOT ON { action, instance, pid, ppid }
 
-set httpd port <%= node["monit"]["port"] %> <%= "and\n    use address #{node["monit"]["listen"]}" unless node["monit"]["listen"].nil? %>
-    <% node["monit"]["allow"].each do |a| %>allow <%= "#{a}\n" %><% end %>
+set httpd port <%= node["monit"]["port"] %> <% unless node["monit"]["listen"] == "all" %><%= "and\n    use address #{node["monit"]["listen"]}" %><% end %>
+<% node["monit"]["allow"].each do |a| %>    allow <%= "#{a}\n" %><% end %>
 
 include /etc/monit/conf.d/*.conf
 
