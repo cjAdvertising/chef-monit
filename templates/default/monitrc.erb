@@ -17,8 +17,7 @@ set mail-format {
 
 set alert <%= node["monit"]["notify_email"] %> NOT ON { action, instance, pid, ppid }
 
-set httpd port <%= node["monit"]["port"] %> and<%= "and\n    use address #{node["monit"]["listen"]}" unless node["monit"]["listen"].nil? %>
-    use address localhost
+set httpd port <%= node["monit"]["port"] %> <%= "and\n    use address #{node["monit"]["listen"]}" unless node["monit"]["listen"].nil? %>
     <% node["monit"]["allow"].each do |a| %>allow <%= "#{a}\n" %><% end %>
 
 include /etc/monit/conf.d/*.conf
