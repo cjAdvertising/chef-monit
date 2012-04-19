@@ -1,5 +1,6 @@
 default[:monit][:notify_email]          = "notify@example.com"
 
+default[:monit][:port]                  = "2812"
 default[:monit][:listen]                = "localhost"
 default[:monit][:allow]                 = ["localhost"]
 
